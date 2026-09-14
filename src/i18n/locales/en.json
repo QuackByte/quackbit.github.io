@@ -1,0 +1,35 @@
+{
+  "nav": ["Features", "Privacy", "Support", "Language", "Main navigation", "Skip to content"],
+  "hero": ["A little better, bit by bit", "Little bits.", "Big change.", "Make room for the habits that make you feel good. A gentle, private habit tracker for iPhone, iPad, and Mac.", "Coming soon to the App Store", "Meet your daily companion", "Syncs with your iCloud"],
+  "trust": ["No account needed", "No ads. No tracking.", "Room for rest days"],
+  "featuresHeading": ["BUILT FOR REAL LIFE", "Find your rhythm.", "A little structure. A lot of room to be you."],
+  "features": [
+    ["Goals your way", "Minutes, repetitions, glasses, or pages. Set a goal that fits your life, and take it one bit at a time."],
+    ["Your days, your pace", "Weekdays, weekends, or a mix of both. Choose when your habits repeat. Rest days never break your streak."],
+    ["A tap is all it takes", "Log a little, finish a goal, or undo a slip. You can even go back and fill in a day you forgot."],
+    ["At home on your screen", "Add +1 or complete a goal from a widget on your iPhone, iPad, or Mac. No need to open the app."]
+  ],
+  "progress": ["PROGRESS, NOT PERFECTION", "Small steps.\nSomething to be proud of.", "Some days you do more. Some days you rest. Your 28-day consistency garden helps you see the bigger picture, one little win at a time.", "Your consistency garden", "Every little bit counts", "Less", "More", "Illustrative preview"],
+  "privacyCallout": ["Just you and your habits.", "Your habits stay on your devices and sync through your own private iCloud. No account, no advertising, no analytics. Your progress is yours.", "Our privacy promise"],
+  "footer": ["Little bits. Big change.", "Made by Quackbyte", "Privacy policy"],
+  "demo": ["Today", "You're showing up.", "A little better, bit by bit", "Your daily bits", "Move your body", "Done for the day. Go you!", "Read a little", "10 / 20 pages", "Stay hydrated", "5 / 8 glasses", "Your journey", "All habits", "A preview of a day with Quackbit"],
+  "support": ["A little help, whenever you need it.", "Need a hand? Get in touch and we will get back to you.", "Email us", "Frequently asked questions", "Still stuck?", "Tell us your device, your iOS or macOS version, and what you expected to happen. You can also describe the habit that is giving you trouble.", "Get help with Quackbit, the private habit tracker for iPhone, iPad, and Mac."],
+  "faqs": [
+    ["How does sync work?", "Quackbit stores your habits on each device and syncs them through your own private iCloud database. Sign in to iCloud on your iPhone, iPad, and Mac to keep them in step. There is nothing to set up and no account with us."],
+    ["Does it work offline?", "Yes. Everything works offline. Changes sync the next time your device reaches iCloud."],
+    ["How do I delete a habit or my data?", "Swipe a habit to delete it, or open it and tap the delete option. This removes the habit and its history. To remove synced copies entirely, manage Quackbit in your device’s iCloud settings or at icloud.com."],
+    ["Why didn’t a reminder arrive?", "Reminders are local notifications. Check that notifications are allowed for Quackbit in Settings, and that the habit repeats on that day and is not already completed."],
+    ["Which devices are supported?", "iPhone, iPad, and Mac. There is also a separate Android app."]
+  ],
+  "privacy": ["Privacy policy", "Last updated 14 September 2026", "Quackbit is built to keep your information to yourself. There is no account, no sign-in, no advertising, and no analytics.", "Quackbit collects no data. Your habits live on your devices and sync through your own private iCloud.", "Apple’s privacy policy", "Questions about privacy?", "Visit our support page"],
+  "policy": [
+    ["What we collect", "Nothing. Quackbit does not collect, transmit, or sell any personal data. We do not run servers that receive your habits, and there is no third-party analytics or tracking SDK in the app."],
+    ["Where your data lives", "The habits you create and the progress you log are stored on your device. If iCloud is available and you leave sync on, that data is also stored in your private iCloud database (Apple CloudKit), tied to your Apple ID and governed by Apple’s privacy policy. We have no ability to read it."],
+    ["Notifications", "If you add a reminder, Quackbit asks for permission and schedules a local notification on your device. Reminders are scheduled and delivered by the system; no reminder data leaves your device for that purpose."],
+    ["Widgets", "Home Screen and desktop widgets read the same on-device data as the app, through a shared container on your device."],
+    ["Diagnostics", "If you have opted in to share diagnostics with Apple, Apple may provide us aggregate, anonymized crash reports through App Store Connect. These are controlled by your device settings, not by Quackbit."],
+    ["Children", "Quackbit is not directed at children and collects no data from anyone, including children."],
+    ["Your control", "You can delete any habit and its history inside the app. Deleting the app removes its local data. To remove synced copies, manage Quackbit’s iCloud data in your device’s settings or at icloud.com."],
+    ["Changes", "If this policy changes, the updated version will be posted here with a new date. Because the app collects no data, we do not expect meaningful changes."]
+  ]
+}

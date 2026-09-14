@@ -1,0 +1,7 @@
+---
+import Document from '../../components/Document.astro';
+import { localizedPaths } from '../../i18n';
+export const getStaticPaths = localizedPaths;
+const { locale } = Astro.props;
+---
+<Document locale={locale} page="support" />
