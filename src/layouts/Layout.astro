@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Quackbit — Little bits. Big change.',
+  description = 'A playful, private habit tracker for iPhone, iPad, and Mac. Daily goals, streaks that respect days off, a widget, and iCloud sync. Coming soon to the App Store.',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" type="image/png" href={`${base}/icon.png`} />
+    <meta name="theme-color" content="#faf8ff" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav wrap">
+      <a class="brand" href={`${base}/`}>
+        <img src={`${base}/icon.png`} width="34" height="34" alt="" />
+        Quackbit
+      </a>
+      <nav aria-label="Main navigation">
+        <a href={`${base}/#features`}>Features</a>
+        <a href={`${base}/privacy/`}>Privacy</a>
+        <a href={`${base}/support/`}>Support</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="wrap">
+      <a class="brand" href="https://quackbyte.dev">
+        <img src={`${base}/icon.png`} width="34" height="34" alt="" />
+        Made by Quackbyte <span aria-hidden="true">↗</span>
+      </a>
+      <div class="links">
+        <a href={`${base}/privacy/`}>Privacy policy</a>
+        <a href={`${base}/support/`}>Support</a>
+        <a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a>
+        <span>© {new Date().getFullYear()} Quackbyte</span>
+      </div>
+    </footer>
+  </body>
+</html>

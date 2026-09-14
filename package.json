@@ -1,0 +1,19 @@
+{
+  "name": "quackbit-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "tsc --noEmit",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.3.2"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  }
+}

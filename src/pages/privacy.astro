@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Privacy — Quackbit"
+  description="Quackbit collects no data. Your habits live on your devices and sync through your own private iCloud."
+>
+  <main id="main" class="doc wrap">
+    <h1>Privacy policy</h1>
+    <p class="updated">Last updated 14 September 2026</p>
+
+    <p>
+      Quackbit is built to keep your information to yourself. There is no account, no sign-in,
+      no advertising, and no analytics.
+    </p>
+
+    <h2>What we collect</h2>
+    <p>
+      Nothing. Quackbit does not collect, transmit, or sell any personal data. We do not run
+      servers that receive your habits, and there is no third-party analytics or tracking SDK in
+      the app.
+    </p>
+
+    <h2>Where your data lives</h2>
+    <p>
+      The habits you create and the progress you log are stored on your device. If iCloud is
+      available and you leave sync on, that data is also stored in your <strong>private</strong>
+      iCloud database (Apple CloudKit), tied to your Apple ID and governed by
+      <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>. We have no ability
+      to read it.
+    </p>
+
+    <h2>Notifications</h2>
+    <p>
+      If you add a reminder, Quackbit asks for permission and schedules a local notification on
+      your device. Reminders are scheduled and delivered by the system; no reminder data leaves
+      your device for that purpose.
+    </p>
+
+    <h2>Widgets</h2>
+    <p>
+      The Home Screen and desktop widgets read the same on-device data as the app, through a
+      shared container on your device.
+    </p>
+
+    <h2>Diagnostics</h2>
+    <p>
+      If you have opted in to share diagnostics with Apple, Apple may provide us aggregate,
+      anonymized crash reports through App Store Connect. These are controlled by your device
+      settings, not by Quackbit.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      Quackbit is not directed at children and collects no data from anyone, including children.
+    </p>
+
+    <h2>Your control</h2>
+    <p>
+      You can delete any habit and its history inside the app. Deleting the app removes its local
+      data; to remove synced copies, manage Quackbit's iCloud data in your device's settings or at
+      <a href="https://www.icloud.com">icloud.com</a>.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      If this policy changes, the updated version will be posted here with a new date. Because the
+      app collects no data, we do not expect meaningful changes.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about privacy? Email
+      <a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a>, or visit our
+      <a href={`${base}/support/`}>support page</a>.
+    </p>
+  </main>
+</Layout>

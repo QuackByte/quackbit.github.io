@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const faqs = [
+  {
+    q: 'How does sync work?',
+    a: 'Quackbit stores your habits on each device and syncs them through your own private iCloud database. Sign in to iCloud on your iPhone, iPad, and Mac, and they stay in step. There is nothing to set up and no account with us.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Yes. Everything works offline; changes sync the next time your device reaches iCloud.',
+  },
+  {
+    q: 'How do I delete a habit or my data?',
+    a: 'Swipe a habit to delete it, or open it and tap Delete habit. That removes the habit and its history. To remove synced copies entirely, manage Quackbit in iCloud settings on your device or at icloud.com.',
+  },
+  {
+    q: 'Why didn\u2019t a reminder arrive?',
+    a: 'Reminders are local notifications. Check that notifications are allowed for Quackbit in Settings, and that the habit repeats on that day and is not already completed.',
+  },
+  {
+    q: 'Which devices are supported?',
+    a: 'iPhone, iPad, and Mac. There is also a separate Android app.',
+  },
+];
+---
+
+<Layout
+  title="Support — Quackbit"
+  description="Get help with Quackbit, the private habit tracker for iPhone, iPad, and Mac."
+>
+  <main id="main" class="doc wrap">
+    <h1>Support</h1>
+    <p class="updated">
+      Need a hand? Email <a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a> and we will get
+      back to you.
+    </p>
+
+    {faqs.map((faq) => (
+      <>
+        <h2>{faq.q}</h2>
+        <p>{faq.a}</p>
+      </>
+    ))}
+
+    <h2>Still stuck?</h2>
+    <p>
+      Tell us your device and iOS or macOS version, and what you expected to happen. If it helps,
+      you can mention the habit that is misbehaving. Write to
+      <a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a>.
+    </p>
+
+    <p><a href={`${base}/privacy/`}>Read the privacy policy</a></p>
+  </main>
+</Layout>
