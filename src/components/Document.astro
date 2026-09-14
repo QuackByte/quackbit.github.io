@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { translations, pageUrl, type Locale } from '../i18n';
+const { locale, page } = Astro.props as { locale: Locale; page: 'privacy' | 'support' };
+const t = translations[locale];
+const privacy = page === 'privacy';
+---
+<Layout locale={locale} page={page} title={`${privacy ? t.privacy[0] : t.nav[2]} — Quackbit`} description={privacy ? t.privacy[3] : t.support[6]}>
+  <main id="main" class="doc wrap">
+    <p class="eyebrow">Quackbit / {privacy ? t.nav[1] : t.nav[2]}</p>
+    <h1>{privacy ? t.privacy[0] : t.support[0]}</h1>
+    {privacy ? <>
+      <p class="updated">{t.privacy[1]}</p><p class="doc-intro">{t.privacy[2]}</p>
+      {t.policy.map(([heading, body], i) => <section class="policy-section"><h2>{heading}</h2><p>{body}</p>{i === 1 && <a href="https://www.apple.com/legal/privacy/">{t.privacy[4]} ↗</a>}{i === 6 && <a href="https://www.icloud.com">icloud.com ↗</a>}</section>)}
+      <div class="contact-card"><h2>{t.privacy[5]}</h2><a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a><p><a href={pageUrl(locale, 'support')}>{t.privacy[6]} ↗</a></p></div>
+    </> : <>
+      <p class="doc-intro">{t.support[1]}</p><a class="button" href="mailto:info@quackbyte.dev">{t.support[2]} <span aria-hidden="true">↗</span></a>
+      <h2 class="faq-heading">{t.support[3]}</h2><div class="faqs">{t.faqs.map(([q, a]) => <details class="faq"><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div>
+      <div class="contact-card"><h2>{t.support[4]}</h2><p>{t.support[5]}</p><a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a></div><p><a href={pageUrl(locale, 'privacy')}>{t.footer[2]} ↗</a></p>
+    </>}
+  </main>
+</Layout>

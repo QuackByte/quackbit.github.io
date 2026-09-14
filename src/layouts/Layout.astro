@@ -1,58 +1,66 @@
 ---
 import '../styles/global.css';
-
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const {
-  title = 'Quackbit — Little bits. Big change.',
-  description = 'A playful, private habit tracker for iPhone, iPad, and Mac. Daily goals, streaks that respect days off, a widget, and iCloud sync. Coming soon to the App Store.',
-} = Astro.props;
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { base, languages, locales, pageUrl, translations, type Locale, type Page } from '../i18n';
+interface Props { locale: Locale; page?: Page; title?: string; description?: string; }
+const { locale, page = '', title, description } = Astro.props;
+const t = translations[locale];
+const pageTitle = title ?? `Quackbit — ${t.footer[0]}`;
+const pageDescription = description ?? t.hero[3];
 ---
-
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={new URL(pageUrl(locale, page), Astro.site)} />
+    {locales.map(lang => <link rel="alternate" hreflang={lang} href={new URL(pageUrl(lang, page), Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(pageUrl('en', page), Astro.site)} />
     <link rel="icon" type="image/png" href={`${base}/icon.png`} />
-    <meta name="theme-color" content="#faf8ff" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#f9f8f5" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(pageUrl(locale, page), Astro.site)} />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
-    <header class="nav wrap">
-      <a class="brand" href={`${base}/`}>
-        <img src={`${base}/icon.png`} width="34" height="34" alt="" />
-        Quackbit
-      </a>
-      <nav aria-label="Main navigation">
-        <a href={`${base}/#features`}>Features</a>
-        <a href={`${base}/privacy/`}>Privacy</a>
-        <a href={`${base}/support/`}>Support</a>
-      </nav>
+    <a class="skip" href="#main">{t.nav[5]}</a>
+    <header class="site-header">
+      <div class="nav wrap">
+        <a class="brand" href={pageUrl(locale)}><img src={`${base}/icon.png`} width="36" height="36" alt="" />Quackbit</a>
+        <nav aria-label={t.nav[4]}>
+          <a href={`${pageUrl(locale)}#features`}>{t.nav[0]}</a>
+          <a href={pageUrl(locale, 'privacy')} aria-current={page === 'privacy' ? 'page' : undefined}>{t.nav[1]}</a>
+          <a href={pageUrl(locale, 'support')} aria-current={page === 'support' ? 'page' : undefined}>{t.nav[2]}</a>
+        </nav>
+        <details class="language-picker">
+          <summary aria-label={`${t.nav[3]}: ${languages[locale]}`}><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span>{languages[locale]}</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+          <div class="language-menu" aria-label={t.nav[3]}>
+            {locales.map(lang => <a href={pageUrl(lang, page)} lang={lang} hreflang={lang} aria-current={locale === lang ? 'true' : undefined}>{languages[lang]}{locale === lang && <span aria-hidden="true">✓</span>}</a>)}
+          </div>
+        </details>
+      </div>
     </header>
     <slot />
     <footer class="wrap">
-      <a class="brand" href="https://quackbyte.dev">
-        <img src={`${base}/icon.png`} width="34" height="34" alt="" />
-        Made by Quackbyte <span aria-hidden="true">↗</span>
-      </a>
-      <div class="links">
-        <a href={`${base}/privacy/`}>Privacy policy</a>
-        <a href={`${base}/support/`}>Support</a>
-        <a href="mailto:info@quackbyte.dev">info@quackbyte.dev</a>
-        <span>© {new Date().getFullYear()} Quackbyte</span>
-      </div>
+      <div><a class="brand" href={pageUrl(locale)}><img src={`${base}/icon.png`} width="32" height="32" alt="" />Quackbit</a><p>{t.footer[0]}</p></div>
+      <div class="footer-links"><a href={pageUrl(locale, 'privacy')}>{t.footer[2]}</a><a href={pageUrl(locale, 'support')}>{t.nav[2]}</a><a href="https://quackbyte.dev">{t.footer[1]} <span aria-hidden="true">↗</span></a><span>© {new Date().getFullYear()} Quackbyte</span></div>
     </footer>
+    <script>
+      const picker = document.querySelector<HTMLDetailsElement>('.language-picker');
+      document.addEventListener('click', event => {
+        if (picker && !picker.contains(event.target as Node)) picker.open = false;
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && picker?.open) {
+          picker.open = false;
+          picker.querySelector('summary')?.focus();
+        }
+      });
+      document.querySelectorAll<HTMLAnchorElement>('.language-menu a').forEach(link => {
+        link.addEventListener('click', () => { link.hash = window.location.hash; });
+      });
+    </script>
   </body>
 </html>

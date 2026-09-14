@@ -1,0 +1,20 @@
+---
+import type { Translation } from '../i18n';
+const { t, locale } = Astro.props as { t: Translation; locale: string };
+const weekdays = Array.from({ length: 7 }, (_, i) => new Intl.DateTimeFormat(locale, { weekday: 'narrow', timeZone: 'UTC' }).format(new Date(Date.UTC(2026, 8, 14 + i))));
+---
+<div class="phone" role="img" aria-label={t.demo[12]}>
+  <div class="phone-screen" aria-hidden="true">
+    <div class="phone-status"><span>9:41</span><span class="island"></span><span>▮▮▮ ▰</span></div>
+    <div class="app-heading"><h2>{t.demo[0]}</h2><span class="app-add">+</span></div>
+    <div class="app-week">{weekdays.map((day, i) => <div class:list={{ selected: i === 0 }}><span>{day}</span><strong>{14 + i}</strong></div>)}</div>
+    <div class="app-summary"><div class="progress-ring">71<span>%</span></div><div><strong>{t.demo[1]}</strong><p>{t.demo[2]} <span>✦</span></p></div></div>
+    <p class="app-label">{t.demo[3]}</p>
+    <div class="habit-list">
+      {[['🏃', t.demo[4], t.demo[5]], ['📖', t.demo[6], t.demo[7]], ['💧', t.demo[8], t.demo[9]]].map((habit, i) => <div class="habit"><span class={`habit-icon habit-icon-${i}`}>{habit[0]}</span><div><strong>{habit[1]}</strong><p>{habit[2]}</p>{i > 0 && <div class="habit-track"><span style={`width:${i === 1 ? 50 : 62.5}%`}></span></div>}</div><span class:list={['habit-check', { complete: i === 0 }]}>{i === 0 ? '✓' : '+'}</span></div>)}
+    </div>
+    <p class="app-note">{t.progress[4]} <span>✦</span></p>
+    <div class="app-tabs"><span class="active">✓<small>{t.demo[0]}</small></span><span>↗<small>{t.demo[10]}</small></span><span>☷<small>{t.demo[11]}</small></span></div>
+    <div class="home-indicator"></div>
+  </div>
+</div>

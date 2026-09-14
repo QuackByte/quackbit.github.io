@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhonePreview from './PhonePreview.astro';
+import { translations, pageUrl, type Locale } from '../i18n';
+const { locale } = Astro.props as { locale: Locale };
+const t = translations[locale];
+const icons = ['◎', '▦', '↗', '▣'];
+// Match the 28-day date grid in public/images/iphone-progress.png.
+const garden = Array.from({ length: 28 }, (_, i) => {
+  const date = new Date(Date.UTC(2026, 7, 18 + i));
+  return new Intl.DateTimeFormat(locale, { day: 'numeric', timeZone: 'UTC' }).format(date);
+});
+---
+<Layout locale={locale}>
+  <main id="main">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> {t.hero[0]}</p>
+        <h1>{t.hero[1]}<br /><span>{t.hero[2]}</span></h1>
+        <p class="lede">{t.hero[3]}</p>
+        <p class="release"><span class="status-dot" aria-hidden="true"></span>{t.hero[4]}</p>
+        <a class="text-link" href="#features">{t.hero[5]} <span aria-hidden="true">↗</span></a>
+        <div class="platforms"><span>iPhone · iPad · Mac</span><span>{t.hero[6]}</span></div>
+      </div>
+      <div class="hero-art"><div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div><span class="art-spark spark-one" aria-hidden="true">✦</span><span class="art-spark spark-two" aria-hidden="true">✧</span><PhonePreview t={t} locale={locale} /><span class="preview-label">{t.progress[7]}</span></div>
+    </section>
+    <div class="trust-strip wrap">{t.trust.map(item => <span><span class="trust-check" aria-hidden="true">✓</span>{item}</span>)}</div>
+    <section id="features" class="feature-section wrap">
+      <div class="section-head"><p class="eyebrow">{t.featuresHeading[0]}</p><h2>{t.featuresHeading[1]}</h2><p>{t.featuresHeading[2]}</p></div>
+      <div class="features">{t.features.map(([title, body], i) => <article class={`feature-card feature-${i}`}><span class="feature-icon" aria-hidden="true">{icons[i]}</span><h3>{title}</h3><p>{body}</p><span class="card-number" aria-hidden="true">0{i + 1}</span></article>)}</div>
+    </section>
+    <section class="progress-section wrap">
+      <div class="progress-copy"><p class="eyebrow">{t.progress[0]}</p><h2>{t.progress[1]}</h2><p>{t.progress[2]}</p></div>
+      <figure class="garden-card">
+        <div class="garden-heading">
+          <div><h3>{t.progress[3]}</h3><p>{t.progress[4]}</p></div>
+        </div>
+        <div class="garden" aria-hidden="true">
+          {garden.map((day, i) => <span class:list={['garden-day', { 'garden-day-highlighted': i === garden.length - 1 }]}>{day}</span>)}
+        </div>
+        <figcaption>{t.progress[7]}</figcaption>
+      </figure>
+    </section>
+    <section class="privacy-section wrap"><div class="privacy-panel"><div class="privacy-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></svg></div><h2>{t.privacyCallout[0]}</h2><p>{t.privacyCallout[1]}</p><a class="text-link" href={pageUrl(locale, 'privacy')}>{t.privacyCallout[2]} <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+</Layout>
